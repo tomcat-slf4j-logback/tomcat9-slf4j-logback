@@ -30,7 +30,8 @@ if [ $TRAVIS_REPO_SLUG == "tomcat-slf4j-logback/tomcat9-slf4j-logback" ] && [ $T
     # Deploy sonatype (clean is required to avoid duplication issues in deployment)
     mvn clean deploy -q --settings ./travis/settings.xml
     echo -e "Successfully deployed SNAPSHOT artifacts to Sonatype under Travis job ${TRAVIS_JOB_NUMBER}"
-
+  else
+    echo "Travis deploy to sonatype skipped"
   fi
 
 else
