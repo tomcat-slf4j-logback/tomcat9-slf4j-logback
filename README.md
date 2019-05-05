@@ -12,34 +12,12 @@ Tomcat SLF4J Logback is a drop in replacement to tomcat allowing full all intern
 As of logback 1.1.7, it is no longer necessary to include `${catalina.home}` in server.xml for logback-access.  We have also realligned our code to better match logback in all ways.
 Throughout this documentation you will read about the prior setup and the new setup.  Both should work without problems.
 
-Drop in support 'server.xml' is correct on latest release.  Issues existed in tomcat 8.5 and 9.0 with Jasper listener being present.  Remove that listener to use older builds.
-
-Tomcat 6 is now End of Life.  As such, we no longer support it via repo as we have released all we will for tomcat6.  Please use our downloads and/or checkout project before removal was performed at [f047273](https://github.com/hazendaz/tomcat-slf4j-logback/commit/f0472736559b2b30038009e57593a7fe899929c9).
-
-Tomcat 8 is now End of Life.  As such, we no longer support it via repo as we have released all we will for tomcat8.  Please use our downloads and/or checkout project before removal was performed at [bf0d9a2](https://github.com/hazendaz/tomcat-slf4j-logback/commit/bf0d9a2b4af6502306ab0faa8eb7d0327a494f97).
+Drop in support 'server.xml' is correct on latest release.  Issues existed in tomcat 9.0 with Jasper listener being present.  Remove that listener to use older builds.
 
 ## RELEASES ##
 
-Releases are grouped by tomcat version.  Pick the version most appropriate to your usecase.  If you would like a prebuilt version not listed please open an issue.  Both github releases and maven central are listed below.
-
-### NOTE: The github releases all say 9 due to glitch in badge.  Each one properly alignes to version you want ###
-
-[![tomcat7](http://github-release-version.herokuapp.com/github/tomcat-slf4j-logback/tomcat-slf4j-logback/release.svg?style=flat)](https://github.com/tomcat-slf4j-logback/tomcat-slf4j-logback/releases/tag/tomcat7\(7.0.92\))
-[![Maven central](https://maven-badges.herokuapp.com/maven-central/com.github.tomcat-slf4j-logback/tomcat7-slf4j-logback/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.tomcat-slf4j-logback/tomcat7-slf4j-logback)
-
-[![tomcat85](http://github-release-version.herokuapp.com/github/tomcat-slf4j-logback/tomcat-slf4j-logback/release.svg?style=flat)](https://github.com/tomcat-slf4j-logback/tomcat-slf4j-logback/releases/tag/tomcat85\(8.5.35\))
-[![Maven central](https://maven-badges.herokuapp.com/maven-central/com.github.tomcat-slf4j-logback/tomcat85-slf4j-logback/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.tomcat-slf4j-logback/tomcat85-slf4j-logback)
-
 [![tomcat9](http://github-release-version.herokuapp.com/github/tomcat-slf4j-logback/tomcat-slf4j-logback/release.svg?style=flat)](https://github.com/tomcat-slf4j-logback/tomcat-slf4j-logback/releases/tag/tomcat9\(9.0.13\))
 [![Maven central](https://maven-badges.herokuapp.com/maven-central/com.github.tomcat-slf4j-logback/tomcat9-slf4j-logback/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.tomcat-slf4j-logback/tomcat9-slf4j-logback)
-
-- deprecated releases -
-
-[![tomcat6](http://github-release-version.herokuapp.com/github/tomcat-slf4j-logback/tomcat-slf4j-logback/release.svg?style=flat)](https://github.com/tomcat-slf4j-logback/tomcat-slf4j-logback/releases/tag/tomcat6\(6.0.53\))
-[![Maven central](https://maven-badges.herokuapp.com/maven-central/com.github.tomcat-slf4j-logback/tomcat6-slf4j-logback/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.tomcat-slf4j-logback/tomcat6-slf4j-logback)
-
-[![tomcat8](http://github-release-version.herokuapp.com/github/tomcat-slf4j-logback/tomcat-slf4j-logback/release.svg?style=flat)](https://github.com/tomcat-slf4j-logback/tomcat-slf4j-logback/releases/tag/tomcat8\(8.0.53\))
-[![Maven central](https://maven-badges.herokuapp.com/maven-central/com.github.tomcat-slf4j-logback/tomcat8-slf4j-logback/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.tomcat-slf4j-logback/tomcat8-slf4j-logback)
 
 ## Quick Start ##
 
@@ -112,38 +90,6 @@ For users to get release, use dependency as follows.
 ```xml
 <dependency>
     <groupId>com.github.tomcat-slf4j-logback</groupId>
-    <artifactId>tomcat6-slf4j-logback</artifactId>
-	<version>${tomcat.version}</version>
-</dependency>
-```
-
-```xml
-<dependency>
-    <groupId>com.github.tomcat-slf4j-logback</groupId>
-    <artifactId>tomcat7-slf4j-logback</artifactId>
-	<version>${tomcat.version}</version>
-</dependency>
-```
-
-```xml
-<dependency>
-    <groupId>com.github.tomcat-slf4j-logback</groupId>
-    <artifactId>tomcat8-slf4j-logback</artifactId>
-	<version>${tomcat.version}</version>
-</dependency>
-```
-
-```xml
-<dependency>
-    <groupId>com.github.tomcat-slf4j-logback</groupId>
-    <artifactId>tomcat85-slf4j-logback</artifactId>
-	<version>${tomcat.version}</version>
-</dependency>
-```
-
-```xml
-<dependency>
-    <groupId>com.github.tomcat-slf4j-logback</groupId>
     <artifactId>tomcat9-slf4j-logback</artifactId>
 	<version>${tomcat.version}</version>
 </dependency>
@@ -209,7 +155,7 @@ Type:
 
     mvn clean install
 
-Tomcat versions for 7, 8.5, and 9 will build.  Tomcat 6 and 8 is no longer provided on repo.
+Tomcat version for 9 build.
 
 And move tomcat-juli JAR for your tomcat version from `target` directory to `$CATALINA_HOME/bin` directory.
 
@@ -265,11 +211,10 @@ can be found in conf/logback.xml from github [releases] (https://github.com/tomc
 
 ## Tomcat Customization ##
 
-#### Tomcat 6.0.x 7.0.x 8.0.x 8.5.x 9.0.x ####
+#### Tomcat 9.0.x ####
 
-After unpacking `apache-tomcat-6.0.x.zip`, `apache-tomcat-7.0.x.zip`, `apache-tomcat-8.0.x.zip`, `apache-tomcat-8.5.x.zip`
-or `apache-tomcat-9.0.x.zip` one can run Tomcat by executing `$CATALINA_HOME/bin/startup.sh`. This will cause running
-Tomcat with standard java.util.logging enabled. The standard commandline is:
+After unpacking `apache-tomcat-9.0.x.zip` one can run Tomcat by executing `$CATALINA_HOME/bin/startup.sh`. This will cause running
+Tomcat with standard java.util.logging enabled. The standard command line is:
 
     "java" \
         -Djava.util.logging.config.file="$CATALINA_HOME/conf/logging.properties"
