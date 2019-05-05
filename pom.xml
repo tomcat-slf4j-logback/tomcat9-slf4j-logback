@@ -57,6 +57,7 @@
     </scm>
 
     <properties>
+        <config.version>1.1.0-SNAPSHOT</config.version>
         <tomcat.version>9.0.19</tomcat.version>
     </properties>
 
@@ -75,10 +76,10 @@
                 <artifactId>maven-dependency-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>copy-config</id>
+                        <id>unpack-config</id>
                         <phase>package</phase>
                         <goals>
-                            <goal>copy</goal>
+                            <goal>unpack</goal>
                         </goals>
                         <configuration>
                             <artifactItems>
@@ -86,9 +87,9 @@
                                     <groupId>com.github.tomcat-slf4j-logback</groupId>
                                     <artifactId>tomcat-slf4j-logback-config</artifactId>
                                     <version>${config.version}</version>
-                                    <type>tar.gz</type>
                                     <overWrite>true</overWrite>
                                     <outputDirectory>${project.build.directory}/tomcat-slfj4-logback-config</outputDirectory>
+                                    <excludes>META-INF/**</excludes>
                                 </artifactItem>
                             </artifactItems>
                         </configuration>
@@ -177,19 +178,19 @@
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.IncludeResourceTransformer">
                                     <resource>META-INF/LICENSE</resource>
-                                    <file>${project.build.directory}/tomcat-slfj4-logback-config/LICENSE</file>
+                                    <file>${project.build.directory}/tomcat-slfj4-logback-config/assembly/LICENSE</file>
                                 </transformer>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.IncludeResourceTransformer">
                                     <resource>META-INF/LICENSE-logback.txt</resource>
-                                    <file>${project.build.directory}/tomcat-slfj4-logback-config/LICENSE-logback.txt</file>
+                                    <file>${project.build.directory}/tomcat-slfj4-logback-config/assembly/LICENSE-logback.txt</file>
                                 </transformer>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.IncludeResourceTransformer">
                                     <resource>META-INF/LICENSE-slf4j.txt</resource>
-                                    <file>${project.build.directory}/tomcat-slfj4-logback-config/LICENSE-slf4j.txt</file>
+                                    <file>${project.build.directory}/tomcat-slfj4-logback-config/assembly/LICENSE-slf4j.txt</file>
                                 </transformer>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.IncludeResourceTransformer">
                                     <resource>META-INF/LICENSE-tomcat.txt</resource>
-                                    <file>${project.build.directory}/tomcat-slfj4-logback-config/LICENSE-tomcat.txt</file>
+                                    <file>${project.build.directory}/tomcat-slfj4-logback-config/assembly/LICENSE-tomcat.txt</file>
                                 </transformer>
                             </transformers>
                         </configuration>
@@ -202,7 +203,7 @@
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
                     <descriptors>
-                        <descriptor>${project.build.directory}/tomcat-slfj4-logback-config/assembly.xml</descriptor>
+                        <descriptor>${project.build.directory}/tomcat-slfj4-logback-config/assembly/assembly.xml</descriptor>
                     </descriptors>
                 </configuration>
                 <executions>
