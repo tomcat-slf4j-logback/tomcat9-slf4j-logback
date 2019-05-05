@@ -77,7 +77,7 @@
                 <executions>
                     <execution>
                         <id>unpack-config</id>
-                        <phase>package</phase>
+                        <phase>process-sources</phase>
                         <goals>
                             <goal>unpack</goal>
                         </goals>
