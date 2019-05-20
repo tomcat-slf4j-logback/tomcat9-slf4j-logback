@@ -58,7 +58,7 @@
 
     <properties>
         <config.version>1.1.0</config.version>
-        <tomcat.version>9.0.19</tomcat.version>
+        <tomcat.version>9.0.20</tomcat.version>
     </properties>
 
     <dependencies>
