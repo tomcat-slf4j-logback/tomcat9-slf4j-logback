@@ -58,7 +58,7 @@
 
     <properties>
         <config.version>1.1.2</config.version>
-        <tomcat.version>9.0.24</tomcat.version>
+        <tomcat.version>9.0.26</tomcat.version>
 
         <!-- Override slf4j to jdk8 version -->
         <slf4j.version>2.0.0-alpha0</slf4j.version>
