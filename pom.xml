@@ -61,7 +61,7 @@
         <tomcat.version>9.0.27</tomcat.version>
 
         <!-- Override slf4j to jdk8 version -->
-        <slf4j.version>2.0.0-alpha0</slf4j.version>
+        <slf4j.version>2.0.0-alpha1</slf4j.version>
     </properties>
 
     <dependencies>
