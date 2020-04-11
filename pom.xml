@@ -70,6 +70,7 @@
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-juli</artifactId>
             <version>${tomcat.version}</version>
+            <optional>true</optional>
         </dependency>
     </dependencies>
 
