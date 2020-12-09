@@ -1,0 +1,34 @@
+#
+# Tomcat-Slf4j-Logback (https://github.com/tomcat-slf4j-logback/tomcat9-slf4j-logback/)
+#
+# Copyright (c) 2010-2020 Tomcat-Slf4j-Logback.
+#
+# All rights reserved. This program and the accompanying materials are made available under the
+# terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available
+# at https://www.eclipse.org/legal/epl-v10.html.
+#
+# Contributors: Tomcat-Slf4j-Logback Team.
+#
+
+name: Sonatype
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    if: github.repository_owner == 'tomcat-slf4j-logback' && ! contains(toJSON(github.event.head_commit.message), '[maven-release-plugin]')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Deploy to Sonatype
+        run: ./mvnw deploy -DskipTests -B --settings ./.mvn/settings.xml
+        env:
+          CI_DEPLOY_USERNAME: ${{ secrets.CI_DEPLOY_USERNAME }}
+          CI_DEPLOY_PASSWORD: ${{ secrets.CI_DEPLOY_PASSWORD }}
