@@ -63,6 +63,10 @@
         <!-- Override for Jdk8 Versions -->
         <logback.version>1.3.0-alpha5</logback.version>
         <slf4j.version>2.0.0-alpha1</slf4j.version>
+        <!-- Logstash encoder and deps versions -->
+        <jackson.version>2.12.1</jackson.version>
+        <jackson-uuid.version>4.0.1</jackson-uuid.version>
+        <logstash.version>6.6</logstash.version>
     </properties>
 
     <dependencies>
@@ -71,6 +75,31 @@
             <artifactId>tomcat-juli</artifactId>
             <version>${tomcat.version}</version>
             <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+            <version>${logstash.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+        <groupId>com.fasterxml.uuid</groupId>
+            <artifactId>java-uuid-generator</artifactId>
+            <version>${jackson-uuid.version}</version>
         </dependency>
     </dependencies>
 
@@ -121,7 +150,11 @@
                                     <include>org.slf4j:jcl-over-slf4j</include>
                                     <include>org.slf4j:slf4j-api</include>
                                     <include>ch.qos.logback:logback-classic</include>
-                                    <include>ch.qos.logback:logback-core</include>
+                                    <include>com.fasterxml.jackson.core:jackson-core</include>
+                                    <include>com.fasterxml.jackson.core:jackson-databind</include>
+                                    <include>com.fasterxml.jackson.core:jackson-annotations</include>
+                                    <include>com.fasterxml.uuid:java-uuid-generator</include>
+                                    <include>net.logstash.logback:logstash-logback-encoder</include>
                                 </includes>
                             </artifactSet>
 
@@ -150,6 +183,20 @@
                                         <exclude>META-INF/services/javax.servlet.ServletContainerInitializer</exclude>
                                     </excludes>
                                 </filter>
+                                <filter>
+                                    <artifact>com.fasterxml*:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/MANIFEST.MF</exclude>
+                                        <exclude>META-INF/NOTICE</exclude>
+                                        <exclude>META-INF/LICENSE</exclude>
+                                    </excludes>
+                                </filter>
+                                <filter>
+                                    <artifact>net.logstash.logback:logstash-logback-encoder</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/MANIFEST.MF</exclude>
+                                    </excludes>
+                                </filter>
                             </filters>
 
                             <relocations>
@@ -164,6 +211,14 @@
                                 <relocation>
                                     <pattern>ch.qos.logback</pattern>
                                     <shadedPattern>org.apache.juli.logging.ch.qos.logback</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>com.fasterxml</pattern>
+                                    <shadedPattern>org.apache.juli.logging.com.fasterxml</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>net.logstash.logback</pattern>
+                                    <shadedPattern>org.apache.juli.logging.net.logstash.logback</shadedPattern>
                                 </relocation>
 
                                 <!-- Located in org.apache.juli.logging.ch.qos.logback.classic.util.ContextInitializer -->
