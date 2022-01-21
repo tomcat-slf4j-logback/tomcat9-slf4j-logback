@@ -58,7 +58,7 @@
 
     <properties>
         <config.version>1.2.0</config.version>
-        <tomcat.version>9.0.56</tomcat.version>
+        <tomcat.version>9.0.58</tomcat.version>
 
         <!-- Use older series due to vulnerabilities -->
         <logback.version>1.2.7</logback.version>
