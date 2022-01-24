@@ -37,8 +37,8 @@
         <url>https://github.com/tomcat-slf4j-logback/tomcat9-slf4j-logback/issues</url>
     </issueManagement>
     <ciManagement>
-        <system>travis-ci</system>
-        <url>https://travis-ci.org/tomcat-slf4j-logback/tomcat9-slf4j-logback</url>
+        <system>GitHub</system>
+        <url>https://github.com/tomcat-slf4j-logback/tomcat9-slf4j-logback/actions</url>
     </ciManagement>
 
     <distributionManagement>
