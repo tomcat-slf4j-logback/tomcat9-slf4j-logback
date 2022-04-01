@@ -57,7 +57,7 @@
     </scm>
 
     <properties>
-        <config.version>1.2.0</config.version>
+        <config.version>1.2.2</config.version>
         <tomcat.version>9.0.62</tomcat.version>
 
         <!-- Override due to vulnerabilities from parent releases -->
