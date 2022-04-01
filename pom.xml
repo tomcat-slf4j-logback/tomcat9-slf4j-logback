@@ -25,7 +25,7 @@
 
     <groupId>com.github.tomcat-slf4j-logback</groupId>
     <artifactId>tomcat9-slf4j-logback</artifactId>
-    <version>9.0.61-SNAPSHOT</version>
+    <version>9.0.62-SNAPSHOT</version>
 
     <name>tomcat9-slf4j-logback</name>
     <description>Tomcat9 Slf4j Logback Integration</description>
@@ -58,7 +58,7 @@
 
     <properties>
         <config.version>1.2.0</config.version>
-        <tomcat.version>9.0.60</tomcat.version>
+        <tomcat.version>9.0.62</tomcat.version>
 
         <!-- Override due to vulnerabilities from parent releases -->
         <logback.version>1.2.11</logback.version>
