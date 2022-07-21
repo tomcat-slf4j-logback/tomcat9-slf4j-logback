@@ -58,7 +58,7 @@
 
     <properties>
         <config.version>1.2.2</config.version>
-        <tomcat.version>9.0.64</tomcat.version>
+        <tomcat.version>9.0.65</tomcat.version>
 
         <!-- Override due to vulnerabilities from parent releases -->
         <logback.version>1.2.11</logback.version>
