@@ -150,6 +150,38 @@
                                         <exclude>META-INF/services/javax.servlet.ServletContainerInitializer</exclude>
                                     </excludes>
                                 </filter>
+
+                                <!-- Exclude manifests as we include our own -->
+                                <filter>
+                                    <artifact>org.slf4j:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/MANIFEST.MF</exclude>
+                                    </excludes>
+                                </filter>
+
+                                <!-- Exclude module info as conflicting and we are not using (we require java 8 as a baseline) -->
+                                <filter>
+                                    <artifact>org.slf4j:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/versions/9/module-info.class</exclude>
+                                    </excludes>
+                                </filter>
+
+                                <!-- Exclude manifests as we include our own -->
+                                <filter>
+                                    <artifact>ch.qos.logback:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/MANIFEST.MF</exclude>
+                                    </excludes>
+                                </filter>
+
+                                <!-- Exclude module info as conflicting and we are not using (we require java 8 as a baseline) -->
+                                <filter>
+                                    <artifact>ch.qos.logback:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/versions/9/module-info.class</exclude>
+                                    </excludes>
+                                </filter>
                             </filters>
 
                             <relocations>
