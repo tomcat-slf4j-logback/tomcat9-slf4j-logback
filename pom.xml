@@ -147,7 +147,7 @@
                                 <filter>
                                     <artifact>ch.qos.logback:logback-classic</artifact>
                                     <excludes>
-                                        <exclude>META-INF/services/jakarta.servlet.ServletContainerInitializer</exclude>
+                                        <exclude>META-INF/services/javax.servlet.ServletContainerInitializer</exclude>
                                     </excludes>
                                 </filter>
                             </filters>
