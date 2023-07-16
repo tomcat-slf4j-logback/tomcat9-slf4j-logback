@@ -1,6 +1,6 @@
 ﻿# Tomcat + SLF4J + Logback #
 
-[![Build Status](https://travis-ci.org/tomcat-slf4j-logback/tomcat-slf4j-logback.svg?branch=master)](https://travis-ci.org/tomcat-slf4j-logback/tomcat-slf4j-logback)
+[![Java CI](https://github.com/tomcat-slf4j-logback/tomcat9-slf4j-logback/workflows/Java%20CI/badge.svg)](https://github.com/tomcat-slf4j-logback/tomcat9-slf4j-logback/actions?query=workflow%3A%22Java+CI%22)
 [![Eclipse](https://img.shields.io/badge/license-Eclipse-blue.svg)](https://www.eclipse.org/legal/epl-v10.html)
 [![Project Stats](https://www.openhub.net/p/tomcat-slf4j-logback/widgets/project_thin_badge.gif)](https://www.openhub.net/p/tomcat-slf4j-logback)
 [![Github All Releases](https://img.shields.io/github/downloads/tomcat-slf4j-logback/tomcat-slf4j-logback/total.svg)]()
@@ -16,7 +16,7 @@ Drop in support 'server.xml' is correct on latest release.  Issues existed in to
 
 ## RELEASES ##
 
-[![tomcat9](http://github-release-version.herokuapp.com/github/tomcat-slf4j-logback/tomcat-slf4j-logback/release.svg?style=flat)](https://github.com/tomcat-slf4j-logback/tomcat-slf4j-logback/releases/tag/tomcat9\(9.0.13\))
+[![tomcat9](http://github-release-version.herokuapp.com/github/tomcat-slf4j-logback/tomcat-slf4j-logback/release.svg?style=flat)](https://github.com/tomcat-slf4j-logback/tomcat-slf4j-logback/releases/tag/tomcat9\(9.0.36\))
 [![Maven central](https://maven-badges.herokuapp.com/maven-central/com.github.tomcat-slf4j-logback/tomcat9-slf4j-logback/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.tomcat-slf4j-logback/tomcat9-slf4j-logback)
 
 ## Quick Start ##
@@ -39,8 +39,8 @@ and doesn't require any changes, unless you have your own version of `setenv.sh`
 * `conf/logback-access.xml` to `$CATALINA_HOME/conf` (older version was called `logback-access-localhost.xml`)
 * `conf/server.xml` to `$CATALINA_HOME/conf` (this file contains proper valve and doesn't require any
 changes, unless you have your own version of `server.xml`)
-* `lib/logback-core-1.2.1.jar` to `$CATALINA_HOME/lib`
-* `lib/logback-access-1.2.1.jar` to `$CATALINA_HOME/lib`
+* `lib/logback-core-1.2.11.jar` to `$CATALINA_HOME/lib`
+* `lib/logback-access-1.2.11.jar` to `$CATALINA_HOME/lib`
 
 Delete `$CATALINA_HOME/conf/logging.properties`. This will turn off `java.util.logging` completely.
 

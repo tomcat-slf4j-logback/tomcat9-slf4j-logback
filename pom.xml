@@ -3,7 +3,7 @@
 
     Tomcat-Slf4j-Logback (https://github.com/tomcat-slf4j-logback/tomcat9-slf4j-logback/)
 
-    Copyright (c) 2010-2021 Tomcat-Slf4j-Logback.
+    Copyright (c) 2010-2023 Tomcat-Slf4j-Logback.
 
     All rights reserved. This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available
@@ -19,13 +19,13 @@
     <parent>
         <groupId>com.github.tomcat-slf4j-logback</groupId>
         <artifactId>tomcat-slf4j-logback-parent</artifactId>
-        <version>1.3.0</version>
+        <version>1.5.0</version>
         <relativePath />
     </parent>
 
     <groupId>com.github.tomcat-slf4j-logback</groupId>
     <artifactId>tomcat9-slf4j-logback</artifactId>
-    <version>9.0.44-SNAPSHOT</version>
+    <version>9.0.77-SNAPSHOT</version>
 
     <name>tomcat9-slf4j-logback</name>
     <description>Tomcat9 Slf4j Logback Integration</description>
@@ -37,15 +37,15 @@
         <url>https://github.com/tomcat-slf4j-logback/tomcat9-slf4j-logback/issues</url>
     </issueManagement>
     <ciManagement>
-        <system>travis-ci</system>
-        <url>https://travis-ci.org/tomcat-slf4j-logback/tomcat9-slf4j-logback</url>
+        <system>GitHub</system>
+        <url>https://github.com/tomcat-slf4j-logback/tomcat9-slf4j-logback/actions</url>
     </ciManagement>
 
     <distributionManagement>
         <site>
-            <id>gh-pages</id>
+            <id>gh-pages-scm</id>
             <name>Tomcat9 Slf4j Logback GitHub Pages</name>
-            <url>git:ssh://git@github.com/tomcat-slf4j-logback/tomcat9-slf4j-logback.git?gh-pages#</url>
+            <url>scm:git:ssh://git@github.com/tomcat-slf4j-logback/tomcat9-slf4j-logback.git</url>
         </site>
     </distributionManagement>
 
@@ -57,16 +57,16 @@
     </scm>
 
     <properties>
-        <config.version>1.2.0</config.version>
-        <tomcat.version>9.0.43</tomcat.version>
+        <config.version>1.3.1</config.version>
+        <tomcat.version>9.0.78</tomcat.version>
 
-        <!-- Override for Jdk8 Versions -->
-        <logback.version>1.2.3</logback.version>
-        <slf4j.version>1.7.30</slf4j.version>
+        <!-- Override for Latest Versions -->
+        <logback.version>1.3.8</logback.version>
+        <slf4j.version>2.0.7</slf4j.version>
+
         <!-- Logstash encoder and deps versions -->
-        <jackson.version>2.12.1</jackson.version>
-        <jackson-uuid.version>4.0.1</jackson-uuid.version>
-        <logstash.version>6.6</logstash.version>
+        <jackson.version>2.15.2</jackson.version>
+        <logstash.version>7.4</logstash.version>
     </properties>
 
     <dependencies>
@@ -183,12 +183,46 @@
                                         <exclude>META-INF/services/javax.servlet.ServletContainerInitializer</exclude>
                                     </excludes>
                                 </filter>
+ 
+                                <!-- Exclude manifests as we include our own -->
+                                <filter>
+                                    <artifact>org.slf4j:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/MANIFEST.MF</exclude>
+                                    </excludes>
+                                </filter>
+
+                                <!-- Exclude module info as conflicting and we are not using (we require java 8 as a baseline) -->
+                                <filter>
+                                    <artifact>org.slf4j:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/versions/9/module-info.class</exclude>
+                                    </excludes>
+                                </filter>
+
+                                <!-- Exclude manifests as we include our own -->
+                                <filter>
+                                    <artifact>ch.qos.logback:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/MANIFEST.MF</exclude>
+                                    </excludes>
+                                </filter>
+
+                                <!-- Exclude module info as conflicting and we are not using (we require java 8 as a baseline) -->
+                                <filter>
+                                    <artifact>ch.qos.logback:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/versions/9/module-info.class</exclude>
+                                    </excludes>
+                                </filter>
+
                                 <filter>
                                     <artifact>com.fasterxml*:*</artifact>
                                     <excludes>
                                         <exclude>META-INF/MANIFEST.MF</exclude>
                                         <exclude>META-INF/NOTICE</exclude>
                                         <exclude>META-INF/LICENSE</exclude>
+                                        <exclude>META-INF/versions/9/module-info.class</exclude>
                                     </excludes>
                                 </filter>
                                 <filter>
@@ -197,7 +231,7 @@
                                         <exclude>META-INF/MANIFEST.MF</exclude>
                                     </excludes>
                                 </filter>
-                            </filters>
+                          </filters>
 
                             <relocations>
                                 <relocation>
