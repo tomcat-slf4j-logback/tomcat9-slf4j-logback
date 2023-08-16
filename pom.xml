@@ -57,14 +57,14 @@
     </scm>
 
     <properties>
-        <config.version>1.3.1</config.version>
+        <config.version>1.4.0</config.version>
         <tomcat.version>9.0.80</tomcat.version>
 
         <!-- Override for Latest Versions -->
-        <logback.version>1.3.8</logback.version>
+        <logback.version>1.3.11</logback.version>
         <slf4j.version>2.0.7</slf4j.version>
 
-        <!-- Logstash encoder and deps versions -->
+        <!-- Logstash Json Encoder -->
         <jackson.version>2.15.2</jackson.version>
         <logstash.version>7.4</logstash.version>
     </properties>
@@ -76,6 +76,47 @@
             <version>${tomcat.version}</version>
             <optional>true</optional>
         </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+            <scope>compile</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>${slf4j.version}</version>
+            <scope>compile</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>${logback.version}</version>
+            <scope>compile</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+            <scope>compile</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-access</artifactId>
+            <version>${logback.version}</version>
+            <scope>compile</scope>
+            <optional>true</optional>
+        </dependency>
+
         <dependency>
             <groupId>net.logstash.logback</groupId>
             <artifactId>logstash-logback-encoder</artifactId>
@@ -83,6 +124,7 @@
             <scope>compile</scope>
             <optional>true</optional>
         </dependency>
+
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
@@ -92,14 +134,14 @@
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
+            <artifactId>jackson-core</artifactId>
             <version>${jackson.version}</version>
             <scope>compile</scope>
             <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
+            <artifactId>jackson-databind</artifactId>
             <version>${jackson.version}</version>
             <scope>compile</scope>
             <optional>true</optional>
@@ -153,9 +195,12 @@
                                     <include>org.slf4j:jcl-over-slf4j</include>
                                     <include>org.slf4j:slf4j-api</include>
                                     <include>ch.qos.logback:logback-classic</include>
+                                    <include>ch.qos.logback:logback-core</include>
+
+                                    <!-- Logstash Dependencies -->
+                                    <include>com.fasterxml.jackson.core:jackson-annotations</include>
                                     <include>com.fasterxml.jackson.core:jackson-core</include>
                                     <include>com.fasterxml.jackson.core:jackson-databind</include>
-                                    <include>com.fasterxml.jackson.core:jackson-annotations</include>
                                     <include>net.logstash.logback:logstash-logback-encoder</include>
                                 </includes>
                             </artifactSet>
@@ -185,7 +230,7 @@
                                         <exclude>META-INF/services/javax.servlet.ServletContainerInitializer</exclude>
                                     </excludes>
                                 </filter>
- 
+
                                 <!-- Exclude manifests as we include our own -->
                                 <filter>
                                     <artifact>org.slf4j:*</artifact>
@@ -218,22 +263,31 @@
                                     </excludes>
                                 </filter>
 
+                                <!-- Exclude manifests as we include our own -->
                                 <filter>
                                     <artifact>com.fasterxml*:*</artifact>
                                     <excludes>
                                         <exclude>META-INF/MANIFEST.MF</exclude>
-                                        <exclude>META-INF/NOTICE</exclude>
-                                        <exclude>META-INF/LICENSE</exclude>
+                                    </excludes>
+                                </filter>
+
+                                <!-- Exclude module info as conflicting and we are not using (we require java 8 as a baseline) -->
+                                <filter>
+                                    <artifact>com.fasterxml*:*</artifact>
+                                    <excludes>
+                                        <exclude>module-info.*</exclude>
                                         <exclude>META-INF/versions/9/module-info.class</exclude>
                                     </excludes>
                                 </filter>
+
+                                <!-- Exclude manifests as we include our own -->
                                 <filter>
                                     <artifact>net.logstash.logback:logstash-logback-encoder</artifact>
                                     <excludes>
                                         <exclude>META-INF/MANIFEST.MF</exclude>
                                     </excludes>
                                 </filter>
-                          </filters>
+                            </filters>
 
                             <relocations>
                                 <relocation>
@@ -248,6 +302,7 @@
                                     <pattern>ch.qos.logback</pattern>
                                     <shadedPattern>org.apache.juli.logging.ch.qos.logback</shadedPattern>
                                 </relocation>
+
                                 <relocation>
                                     <pattern>com.fasterxml</pattern>
                                     <shadedPattern>org.apache.juli.logging.com.fasterxml</shadedPattern>
@@ -312,6 +367,7 @@
                     </execution>
                 </executions>
             </plugin>
+
         </plugins>
     </build>
 

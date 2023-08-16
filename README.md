@@ -39,8 +39,8 @@ and doesn't require any changes, unless you have your own version of `setenv.sh`
 * `conf/logback-access.xml` to `$CATALINA_HOME/conf` (older version was called `logback-access-localhost.xml`)
 * `conf/server.xml` to `$CATALINA_HOME/conf` (this file contains proper valve and doesn't require any
 changes, unless you have your own version of `server.xml`)
-* `lib/logback-core-1.2.11.jar` to `$CATALINA_HOME/lib`
-* `lib/logback-access-1.2.11.jar` to `$CATALINA_HOME/lib`
+* `lib/logback-core-1.3.11.jar` to `$CATALINA_HOME/lib`
+* `lib/logback-access-1.3.11.jar` to `$CATALINA_HOME/lib`
 
 Delete `$CATALINA_HOME/conf/logging.properties`. This will turn off `java.util.logging` completely.
 
@@ -208,12 +208,24 @@ _common class loader_.
 Sample `logback.xml` reflecting the configuration from standard `$CATALINA_HOME/conf/logging.properties`
 can be found in conf/logback.xml from github [releases] (https://github.com/tomcat-slf4j-logback/tomcat-slf4j-logback/releases).
 
+### JSON Logging with Logstash Encoder ###
+
+This is an example logback.xml that logs JSON data to the console, and is suitable for container-based deployments:
+
+    <configuration>
+        <appender name="CONSOLE" class="org.apache.juli.logging.ch.qos.logback.core.ConsoleAppender">
+            <encoder class="org.apache.juli.logging.net.logstash.logback.encoder.LogstashEncoder"/>
+        </appender>
+        <root level="INFO">
+            <appender-ref ref="CONSOLE" />
+        </root>
+    </configuration>
 
 ## Tomcat Customization ##
 
 #### Tomcat 9.0.x ####
 
-After unpacking `apache-tomcat-9.0.x.zip` one can run Tomcat by executing `$CATALINA_HOME/bin/startup.sh`. This will cause running
+After unpacking `apache-tomcat-9.0.x.zip`, one can run Tomcat by executing `$CATALINA_HOME/bin/startup.sh`. This will cause running
 Tomcat with standard java.util.logging enabled. The standard command line is:
 
     "java" \
