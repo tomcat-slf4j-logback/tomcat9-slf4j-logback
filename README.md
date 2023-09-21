@@ -7,13 +7,6 @@
 
 Tomcat SLF4J Logback is a drop in replacement to tomcat allowing full all internal logging to use our favorite slf4j/logback libraries.
 
-## NOTICE ##
-
-As of logback 1.1.7, it is no longer necessary to include `${catalina.home}` in server.xml for logback-access.  We have also realligned our code to better match logback in all ways.
-Throughout this documentation you will read about the prior setup and the new setup.  Both should work without problems.
-
-Drop in support 'server.xml' is correct on latest release.  Issues existed in tomcat 9.0 with Jasper listener being present.  Remove that listener to use older builds.
-
 ## RELEASES ##
 
 [![tomcat9](http://github-release-version.herokuapp.com/github/tomcat-slf4j-logback/tomcat-slf4j-logback/release.svg?style=flat)](https://github.com/tomcat-slf4j-logback/tomcat-slf4j-logback/releases/tag/tomcat9\(9.0.36\))
@@ -24,9 +17,6 @@ Drop in support 'server.xml' is correct on latest release.  Issues existed in to
 If you quickly want to configure Tomcat to use Slf4J and Logback, just download latest package available
 from github [releases](https://github.com/tomcat-slf4j-logback/tomcat-slf4j-logback/releases)
 into $CATALINA_HOME.  Be advised doing so will replace server.xml with default version and logging valve!
-
-Some rather old versions are not predefined for direct exploding into $CATALINA_HOME.  If you would like that changed,
-please raise an issue.
 
 The following directions are for manual setup.
 
@@ -56,9 +46,7 @@ When using your own preconfigured `server.xml`, the following will need applied.
 Add (if using legacy `logback-access-localhost.xml`):
 
     <Valve className="ch.qos.logback.access.tomcat.LogbackValve" quiet="true"
-       filename="${catalina.home}/conf/logback-access-localhost.xml" />
-
-    note: if using logback 1.1.7+, the `${catalina.home}` can be removed
+       filename="conf/logback-access-localhost.xml" />
 
 Add (if using logback defined naming `logback-access.xml` which allows it to auto discover)
 
@@ -75,11 +63,6 @@ Remove:
 from `$CATALINA_HOME/conf/server.xml`.
 
 Final step: run `$CATALINA_HOME/bin/startup.sh` (or `startup.bat`). Voila!
-
-## Git Bash ##
-
-Git Bash in Windows now supports *nix based running.  This was accomplished by removing undocumented logback
-setting `file:` from logback.configurationFile.
 
 ## Maven Central Distribution ##
 
@@ -99,7 +82,7 @@ The tomcat-slfj4-logback binary must be renamed as tomcat-juli to use within a t
 
 ## Site Page ##
 
-Site page is located [here](https://tomcat-slf4j-logback.github.io/tomcat-slf4j-logback/)
+Site page is located [here](https://tomcat-slf4j-logback.github.io/tomcat9-slf4j-logback/)
 
 ## Details ##
 
@@ -115,6 +98,8 @@ This project's main and only goal is to allow the following:
   of logback-access,
 * make possible to use independent configuration of slf4j+logback from all web applications which may carry
   their own slf4j-api, logback-core, and logback-classic in their `WEB-INF/lib` directory.
+* make possible to use [`logstash-logback-encoder`](https://github.com/logfellow/logstash-logback-encoder)
+  for logging in JSON format.
 
 Using only Mavens `pom.xml` file, proper source JARs are downloaded from maven repository and unpacked.
 Then all classes are refactored under `org.apache.juli.logging` package/subpackages and then compiled.
@@ -143,10 +128,6 @@ as commons-logging is transformed in Tomcat's build process. It is eventually co
 * `logback-core` - core Logback JAR.
 * `logback-classic` - actual SLF4J binding JAR.
 
-Prior builds of this project contained 4 separate jars where tomcat-juli noted these in the manifest in
-order to avoid further touching of tomcat configuration files for security purposes.  Current build 
-results in a single tomcat-juli file and thus no longer requires this.
-
 ## Installation ##
 
 Launching the build requires Maven install - everything will be downloaded upon build.
@@ -155,7 +136,7 @@ Type:
 
     mvn clean install
 
-Tomcat version for 9 build.
+Tomcat version for 9 build requires jdk 8.
 
 And move tomcat-juli JAR for your tomcat version from `target` directory to `$CATALINA_HOME/bin` directory.
 
@@ -174,10 +155,9 @@ variables - in `catalina.sh`, `setenv.sh` or other):
 
     -Djuli-logback.configurationFile=file:<logback.xml location>
 
-Alternative to allow git bash, remove the `file:` marker.  This works on newer tomcat versions but has not been
-tested on older copies.  It works using the bat or sh in this mode.
-	
-	-Djuli-logback.configurationFile=<logback.xml location>
+Alternative to allow git bash, remove the `file:` marker.  It works using the bat or sh in this mode.
+
+    -Djuli-logback.configurationFile=<logback.xml location>
 
 ## Configuration ##
 
@@ -193,10 +173,17 @@ config file, e.g.:
                 <pattern>%d{HH:mm:ss.SSS} %-5level {%thread} [%logger{20}] : %msg%n</pattern>
             </encoder>
         </appender>
-        <logger name="org.apache.catalina.core.ContainerBase.[Catalina].[localhost]" level="INFO"
-                additivity="false">
-            <appender-ref ref="FILE-LOCALHOST" />
-        </logger>
+        <root level="INFO">
+            <appender-ref ref="CONSOLE" />
+        </root>
+    </configuration>
+
+Alternatively, you can use bundled Logstash encoder for logging in JSON format:
+
+    <configuration>
+        <appender name="CONSOLE" class="org.apache.juli.logging.ch.qos.logback.core.ConsoleAppender">
+            <encoder class="org.apache.juli.logging.net.logstash.logback.encoder.LogstashEncoder" />
+        </appender>
         <root level="INFO">
             <appender-ref ref="CONSOLE" />
         </root>
@@ -206,20 +193,7 @@ Configuration of logback-access doesn't require renamed packages, as the require
 _common class loader_.
 
 Sample `logback.xml` reflecting the configuration from standard `$CATALINA_HOME/conf/logging.properties`
-can be found in conf/logback.xml from github [releases] (https://github.com/tomcat-slf4j-logback/tomcat-slf4j-logback/releases).
-
-### JSON Logging with Logstash Encoder ###
-
-This is an example logback.xml that logs JSON data to the console, and is suitable for container-based deployments:
-
-    <configuration>
-        <appender name="CONSOLE" class="org.apache.juli.logging.ch.qos.logback.core.ConsoleAppender">
-            <encoder class="org.apache.juli.logging.net.logstash.logback.encoder.LogstashEncoder"/>
-        </appender>
-        <root level="INFO">
-            <appender-ref ref="CONSOLE" />
-        </root>
-    </configuration>
+[logback.xml](https://github.com/tomcat-slf4j-logback/tomcat-slf4j-logback-config/blob/master/src/main/resources/assembly/conf/logback.xml).
 
 ## Tomcat Customization ##
 
@@ -256,14 +230,12 @@ The final step is to configure `logback-access`. Now we don't have to deal with 
 Add (if using legacy `logback-access-localhost.xml`):
 
     <Valve className="ch.qos.logback.access.tomcat.LogbackValve" quiet="true"
-        filename="${catalina.home}/conf/logback-access-localhost.xml" />
-
-	note: if using logback 1.1.7+, the `${catalina.home}` can be removed
+        filename="conf/logback-access-localhost.xml" />
 
 Add (if using logback defined naming `logback-access.xml` which allows it to auto discover)
 
     <Valve className="ch.qos.logback.access.tomcat.LogbackValve" quiet="true" />
-		
+
 to `$CATALINA_HOME/conf/server.xml`, place properly configured `logback-access-localhost.xml` on
 `$CATALINA_HOME/conf` and place `logback-core` and `logback-access` JARs into `$CATALINA_HOME/lib`. This
 won't cause problems with individual WARs' slf4j+logback configuration, because `logback.xml` is read by
