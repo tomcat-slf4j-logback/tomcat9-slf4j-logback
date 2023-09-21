@@ -1,5 +1,6 @@
 Notable Changes
 ---------------
+* 2023-09-21 As of tomcat 9.0.80, now supports logstash
 * [#124](https://github.com/tomcat-slf4j-logback/tomcat-slf4j-logback/pull/124): Correct server.xml per version [@hazendaz]
 
 * [#120](https://github.com/tomcat-slf4j-logback/tomcat-slf4j-logback/pull/120): Multi-module revamp [@hazendaz]
