@@ -1,15 +1,3 @@
-#
-# Tomcat-Slf4j-Logback (https://github.com/tomcat-slf4j-logback/tomcat9-slf4j-logback/)
-#
-# Copyright (c) 2010-2021 Tomcat-Slf4j-Logback.
-#
-# All rights reserved. This program and the accompanying materials are made available under the
-# terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available
-# at https://www.eclipse.org/legal/epl-v10.html.
-#
-# Contributors: Tomcat-Slf4j-Logback Team.
-#
-
 name: Sonatype
 
 on:
@@ -26,10 +14,11 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v4
         with:
+          cache: maven
+          distribution: temurin
           java-version: 21
-          distribution: zulu
       - name: Deploy to Sonatype
-        run: ./mvnw deploy -DskipTests -B --settings ./.mvn/settings.xml
+        run: ./mvnw deploy -DskipTests -B -V --no-transfer-progress --settings ./.mvn/settings.xml -Dlicense.skip=true
         env:
           CI_DEPLOY_USERNAME: ${{ secrets.CI_DEPLOY_USERNAME }}
           CI_DEPLOY_PASSWORD: ${{ secrets.CI_DEPLOY_PASSWORD }}
