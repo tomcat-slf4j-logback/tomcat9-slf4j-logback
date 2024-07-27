@@ -68,7 +68,7 @@
 
         <!-- Logstash Json Encoder -->
         <jackson.version>2.17.2</jackson.version>
-        <logstash.version>7.4</logstash.version>
+        <logstash.version>8.0</logstash.version>
     </properties>
 
     <dependencies>
