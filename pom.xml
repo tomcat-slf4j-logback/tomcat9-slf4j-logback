@@ -59,7 +59,7 @@
     <properties>
         <!-- Config and Tomcat Versions -->
         <config.version>1.5.2</config.version>
-        <tomcat.version>9.0.94</tomcat.version>
+        <tomcat.version>9.0.95</tomcat.version>
 
         <!-- Override for Latest Versions -->
         <logback.version>1.3.14</logback.version>
