@@ -67,7 +67,7 @@
         <slf4j.version>2.0.16</slf4j.version>
 
         <!-- Logstash Json Encoder -->
-        <jackson.version>2.18.0</jackson.version>
+        <jackson.version>2.18.1</jackson.version>
         <logstash.version>7.4</logstash.version>
     </properties>
 
