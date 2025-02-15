@@ -69,6 +69,9 @@
         <!-- Logstash Json Encoder -->
         <jackson.version>2.18.2</jackson.version>
         <logstash.version>7.4</logstash.version>
+
+        <!-- Automatic Module Name -->
+        <module.name>com.github.tomcat9.slf4j.logback</module.name>
     </properties>
 
     <dependencies>
