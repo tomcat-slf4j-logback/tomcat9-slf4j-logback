@@ -58,7 +58,7 @@
 
     <properties>
         <!-- Config and Tomcat Versions -->
-        <config.version>1.6.1</config.version>
+        <config.version>1.6.2</config.version>
         <tomcat.version>9.0.104</tomcat.version>
 
         <!-- Override for Latest Versions -->
