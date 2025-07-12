@@ -41,6 +41,32 @@
         <url>https://github.com/tomcat-slf4j-logback/tomcat9-slf4j-logback/actions</url>
     </ciManagement>
 
+    <licenses>
+        <license>
+            <name>Eclipse Public License</name>
+            <url>https://raw.githubusercontent.com/tomcat-slf4j-logback/tomcat-slf4j-logback-parent/refs/heads/master/LICENSE</url>
+            <distribution>repo</distribution>
+        </license>
+        <license>
+            <name>Tomcat License</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>manual</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+        <license>
+            <name>Logback License</name>
+            <url>https://logback.qos.ch/license.html</url>
+            <distribution>manual</distribution>
+            <comments>Dual-licensed under the EPL v1.0 and the LGPL 2.1</comments>
+        </license>
+        <license>
+            <name>Slf4j License</name>
+            <url>http://slf4j.org/license.html</url>
+            <distribution>manual</distribution>
+            <comments>MIT license</comments>
+        </license>
+    </licenses>
+
     <distributionManagement>
         <site>
             <id>gh-pages-scm</id>
