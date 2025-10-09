@@ -32,6 +32,40 @@
 
     <url>https://github.com/tomcat-slf4j-logback/tomcat9-slf4j-logback</url>
 
+    <developers>
+        <developer>
+            <id>grgrzybek</id>
+            <name>Grzegorz Grzybek</name>
+            <email>grgrzybek@hotmail.com</email>
+            <url>https://www.linkedin.com/in/grgrzybek</url>
+            <organization>grgrzybek</organization>
+            <organizationUrl>https://github.com/grgrzybek/</organizationUrl>
+            <roles>
+                <role>Architect</role>
+                <role>Developer</role>
+            </roles>
+            <timezone>+1</timezone>
+            <properties>
+                <picUrl>https://media.licdn.com/mpr/mpr/shrinknp_200_200/p/2/005/043/3fe/29c33c6.jpg</picUrl>
+            </properties>
+        </developer>
+        <developer>
+            <name>Jeremy Landis</name>
+            <email>jeremylandis@hotmail.com</email>
+            <url>https://www.linkedin.com/pub/jeremy-landis/19/b27/548/</url>
+            <organization>hazendaz</organization>
+            <organizationUrl>https://github.com/hazendaz</organizationUrl>
+            <roles>
+                <role>Architect</role>
+                <role>Developer</role>
+            </roles>
+            <timezone>-5</timezone>
+            <properties>
+                <picUrl>https://media.licdn.com/mpr/mpr/shrinknp_200_200/p/1/000/128/174/30cff69.jpg</picUrl>
+            </properties>
+        </developer>
+    </developers>
+
     <issueManagement>
         <system>GitHub</system>
         <url>https://github.com/tomcat-slf4j-logback/tomcat9-slf4j-logback/issues</url>
