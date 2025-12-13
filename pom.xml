@@ -82,7 +82,7 @@
             <distribution>repo</distribution>
         </license>
         <license>
-            <name>Tomcat License</name>
+            <name>Tomcat, Jackson, and Logstash License</name>
             <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
             <distribution>manual</distribution>
             <comments>A business-friendly OSS license</comments>
