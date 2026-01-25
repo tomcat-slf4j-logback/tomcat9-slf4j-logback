@@ -112,6 +112,10 @@
     </scm>
 
     <properties>
+        <!-- Require java 8 -->
+        <java.version>8</java.version>
+        <java.release.version>8</java.release.version>
+
         <!-- Config and Tomcat Versions -->
         <config.version>1.7.0</config.version>
         <tomcat.version>9.0.115</tomcat.version>
@@ -342,7 +346,7 @@
 
                                 <!-- Exclude licenses as separately handled -->
                                 <filter>
-                                    <artifact>com.fasterxml*:*</artifact>
+                                    <artifact>com.fasterxml.jackson.core:*</artifact>
                                     <excludes>
                                         <exclude>META-INF/LICENSE</exclude>
                                     </excludes>
@@ -350,7 +354,7 @@
 
                                 <!-- Exclude manifests as we include our own -->
                                 <filter>
-                                    <artifact>com.fasterxml*:*</artifact>
+                                    <artifact>com.fasterxml.jackson.core:*</artifact>
                                     <excludes>
                                         <exclude>META-INF/MANIFEST.MF</exclude>
                                     </excludes>
@@ -358,7 +362,7 @@
 
                                 <!-- Exclude notices as separately handled -->
                                 <filter>
-                                    <artifact>com.fasterxml*:*</artifact>
+                                    <artifact>com.fasterxml.jackson.core:*</artifact>
                                     <excludes>
                                         <exclude>META-INF/NOTICE</exclude>
                                     </excludes>
@@ -366,7 +370,7 @@
 
                                 <!-- Exclude module info as conflicting and we are not using (we require java 8 as a baseline) -->
                                 <filter>
-                                    <artifact>com.fasterxml*:*</artifact>
+                                    <artifact>com.fasterxml.jackson.core:*</artifact>
                                     <excludes>
                                         <exclude>module-info.*</exclude>
                                         <exclude>META-INF/versions/9/module-info.class</exclude>
@@ -409,13 +413,13 @@
                                 </relocation>
 
                                 <relocation>
-                                    <pattern>com.fasterxml</pattern>
-                                    <shadedPattern>org.apache.juli.logging.com.fasterxml</shadedPattern>
+                                    <pattern>com.fasterxml.jackson</pattern>
+                                    <shadedPattern>org.apache.juli.logging.com.fasterxml.jackson</shadedPattern>
                                 </relocation>
 
                                 <relocation>
-                                    <pattern>com/fasterxml</pattern>
-                                    <shadedPattern>org/apache/juli/logging/com/fasterxml</shadedPattern>
+                                    <pattern>com/fasterxml/jackson</pattern>
+                                    <shadedPattern>org/apache/juli/logging/com/fasterxml/jackson</shadedPattern>
                                     <rawString>true</rawString>
                                 </relocation>
 
