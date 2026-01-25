@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Tomcat-Slf4j-Logback (https://github.com/tomcat-slf4j-logback/tomcat9-slf4j-logback/)
+    SPDX-License-Identifier: EPL-1.0
+    See LICENSE file for details.
 
-    Copyright (c) 2010-2025 Tomcat-Slf4j-Logback.
-
-    All rights reserved. This program and the accompanying materials are made available under the
-    terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available
-    at https://www.eclipse.org/legal/epl-v10.html.
-
-    Contributors: Tomcat-Slf4j-Logback Team.
+    Copyright 2010-2025 Hazendaz
 
 -->
 <extensions>
