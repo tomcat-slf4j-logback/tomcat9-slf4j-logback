@@ -77,8 +77,8 @@
 
     <licenses>
         <license>
-            <name>Eclipse Public License</name>
-            <url>https://raw.githubusercontent.com/tomcat-slf4j-logback/tomcat9-slf4j-logback/refs/heads/master/LICENSE</url>
+            <name>Eclipse Public License 1.0</name>
+            <url>https://www.eclipse.org/legal/epl-v10.html</url>
             <distribution>repo</distribution>
         </license>
         <license>
