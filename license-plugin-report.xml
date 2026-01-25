@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<licensePluginReport goal="FORMAT" timestamp="1769310408340">
+    <module artifactId="tomcat9-slf4j-logback" groupId="com.github.tomcat-slf4j-logback" version="9.0.115"/>
+    <files>
+        <file path=".mvn\extensions.xml" result="REPLACED"/>
+        <file path=".mvn\settings.xml" result="REPLACED"/>
+        <file path="pom.xml" result="NOOP"/>
+        <file path="src\main\java\com\github\tomcat\slf4j\logback\notice\TomcatSlf4jLogback.java" result="REPLACED"/>
+        <file path="src\main\java\com\github\tomcat\slf4j\logback\notice\package-info.java" result="REPLACED"/>
+        <file path="src\site\site.xml" result="REPLACED"/>
+    </files>
+</licensePluginReport>
