@@ -117,8 +117,8 @@
         <tomcat.version>9.0.115</tomcat.version>
 
         <!-- Override for Latest Versions -->
-        <logback.version>1.3.16</logback.version>
-        <logback-access.version>1.3.16</logback-access.version>
+        <logback.version>1.5.28</logback.version>
+        <logback-access.version>1.5.28</logback-access.version>
         <slf4j.version>2.0.17</slf4j.version>
 
         <!-- Logstash Json Encoder -->
