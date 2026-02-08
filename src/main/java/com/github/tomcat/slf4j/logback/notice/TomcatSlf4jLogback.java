@@ -2,7 +2,7 @@
  * SPDX-License-Identifier: EPL-1.0
  * See LICENSE file for details.
  *
- * Copyright 2010-2026 Hazendaz
+ * Copyright 2010-2026 tomcat-slf4j-logback
  */
 package com.github.tomcat.slf4j.logback.notice;
 
