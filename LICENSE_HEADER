@@ -1,4 +1,4 @@
 SPDX-License-Identifier: EPL-1.0
 See LICENSE file for details.
 
-Copyright ${license.git.copyrightYears} Hazendaz
+Copyright ${license.git.copyrightYears} ${owner}
