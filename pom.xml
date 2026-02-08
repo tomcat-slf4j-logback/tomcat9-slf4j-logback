@@ -391,13 +391,20 @@
                                     <pattern>org.apache.commons.logging</pattern>
                                     <shadedPattern>org.apache.juli.logging</shadedPattern>
                                 </relocation>
+
                                 <relocation>
                                     <pattern>org.slf4j</pattern>
                                     <shadedPattern>org.apache.juli.logging.org.slf4j</shadedPattern>
                                 </relocation>
+
                                 <relocation>
                                     <pattern>ch.qos.logback</pattern>
                                     <shadedPattern>org.apache.juli.logging.ch.qos.logback</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>ch/qos/logback</pattern>
+                                    <shadedPattern>org/apache/juli/logging/ch/qos/logback</shadedPattern>
+                                    <rawString>true</rawString>
                                 </relocation>
 
                                 <!-- Located in org.apache.juli.logging.ch.qos.logback.classic.util.ContextInitializer -->
