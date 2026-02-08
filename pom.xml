@@ -27,6 +27,32 @@
 
     <url>https://github.com/tomcat-slf4j-logback/tomcat9-slf4j-logback</url>
 
+    <licenses>
+        <license>
+            <name>Eclipse Public License 1.0</name>
+            <url>https://www.eclipse.org/legal/epl-v10.html</url>
+            <distribution>repo</distribution>
+        </license>
+        <license>
+            <name>Tomcat, Jackson, and Logstash License</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>manual</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+        <license>
+            <name>Logback License</name>
+            <url>https://logback.qos.ch/license.html</url>
+            <distribution>manual</distribution>
+            <comments>Dual-licensed under the EPL v1.0 and the LGPL 2.1</comments>
+        </license>
+        <license>
+            <name>Slf4j License</name>
+            <url>http://slf4j.org/license.html</url>
+            <distribution>manual</distribution>
+            <comments>MIT license</comments>
+        </license>
+    </licenses>
+
     <developers>
         <developer>
             <id>grgrzybek</id>
@@ -61,6 +87,13 @@
         </developer>
     </developers>
 
+    <scm>
+        <connection>scm:git:ssh://git@github.com/tomcat-slf4j-logback/tomcat9-slf4j-logback.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/tomcat-slf4j-logback/tomcat9-slf4j-logback.git</developerConnection>
+        <tag>HEAD</tag>
+        <url>https://github.com/tomcat-slf4j-logback/tomcat9-slf4j-logback</url>
+    </scm>
+
     <issueManagement>
         <system>GitHub</system>
         <url>https://github.com/tomcat-slf4j-logback/tomcat9-slf4j-logback/issues</url>
@@ -70,32 +103,6 @@
         <url>https://github.com/tomcat-slf4j-logback/tomcat9-slf4j-logback/actions</url>
     </ciManagement>
 
-    <licenses>
-        <license>
-            <name>Eclipse Public License 1.0</name>
-            <url>https://www.eclipse.org/legal/epl-v10.html</url>
-            <distribution>repo</distribution>
-        </license>
-        <license>
-            <name>Tomcat, Jackson, and Logstash License</name>
-            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>manual</distribution>
-            <comments>A business-friendly OSS license</comments>
-        </license>
-        <license>
-            <name>Logback License</name>
-            <url>https://logback.qos.ch/license.html</url>
-            <distribution>manual</distribution>
-            <comments>Dual-licensed under the EPL v1.0 and the LGPL 2.1</comments>
-        </license>
-        <license>
-            <name>Slf4j License</name>
-            <url>http://slf4j.org/license.html</url>
-            <distribution>manual</distribution>
-            <comments>MIT license</comments>
-        </license>
-    </licenses>
-
     <distributionManagement>
         <site>
             <id>gh-pages-scm</id>
@@ -103,13 +110,6 @@
             <url>scm:git:ssh://git@github.com/tomcat-slf4j-logback/tomcat9-slf4j-logback.git</url>
         </site>
     </distributionManagement>
-
-    <scm>
-        <connection>scm:git:ssh://git@github.com/tomcat-slf4j-logback/tomcat9-slf4j-logback.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com/tomcat-slf4j-logback/tomcat9-slf4j-logback.git</developerConnection>
-        <url>https://github.com/tomcat-slf4j-logback/tomcat9-slf4j-logback</url>
-        <tag>HEAD</tag>
-    </scm>
 
     <properties>
         <!-- Require java 8 -->
@@ -139,8 +139,8 @@
                 <groupId>com.fasterxml.jackson</groupId>
                 <artifactId>jackson-bom</artifactId>
                 <version>${jackson.version}</version>
-                <scope>import</scope>
                 <type>pom</type>
+                <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -229,10 +229,10 @@
                 <executions>
                     <execution>
                         <id>unpack-config</id>
-                        <phase>process-sources</phase>
                         <goals>
                             <goal>unpack</goal>
                         </goals>
+                        <phase>process-sources</phase>
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
@@ -253,10 +253,10 @@
                 <artifactId>maven-shade-plugin</artifactId>
                 <executions>
                     <execution>
-                        <phase>package</phase>
                         <goals>
                             <goal>shade</goal>
                         </goals>
+                        <phase>package</phase>
                         <configuration>
                             <createDependencyReducedPom>false</createDependencyReducedPom>
                             <createSourcesJar>true</createSourcesJar>
@@ -484,10 +484,10 @@
                 <executions>
                     <execution>
                         <id>make-assembly</id>
-                        <phase>package</phase>
                         <goals>
                             <goal>single</goal>
                         </goals>
+                        <phase>package</phase>
                     </execution>
                 </executions>
             </plugin>
