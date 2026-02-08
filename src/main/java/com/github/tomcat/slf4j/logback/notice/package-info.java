@@ -2,7 +2,7 @@
  * SPDX-License-Identifier: EPL-1.0
  * See LICENSE file for details.
  *
- * Copyright 2010-2023 Hazendaz
+ * Copyright 2010-2026 Hazendaz
  */
 /**
  * Tomcat SLF4J Logback is a drop in replacement to tomcat allowing full all
