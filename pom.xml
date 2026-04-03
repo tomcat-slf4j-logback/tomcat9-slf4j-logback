@@ -118,7 +118,7 @@
 
         <!-- Config and Tomcat Versions -->
         <config.version>1.7.0</config.version>
-        <tomcat.version>9.0.116</tomcat.version>
+        <tomcat.version>9.0.117</tomcat.version>
 
         <!-- Override for Latest Versions -->
         <logback.version>1.3.16</logback.version>
