@@ -117,7 +117,7 @@
         <java.release.version>8</java.release.version>
 
         <!-- Config and Tomcat Versions -->
-        <config.version>1.7.0</config.version>
+        <config.version>1.7.1</config.version>
         <tomcat.version>9.0.117</tomcat.version>
 
         <!-- Override for Latest Versions -->
