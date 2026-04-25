@@ -1,5 +1,5 @@
 /*
- * SPDX-License-Identifier: EPL-1.0
+ * SPDX-License-Identifier: EPL-2.0
  * See LICENSE file for details.
  *
  * Copyright 2010-2026 tomcat-slf4j-logback
