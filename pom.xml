@@ -43,7 +43,7 @@
             <name>Logback License</name>
             <url>https://logback.qos.ch/license.html</url>
             <distribution>manual</distribution>
-            <comments>Dual-licensed under the EPL v1.0 and the LGPL 2.1</comments>
+            <comments>Dual-licensed under the EPL v2.0 and the LGPL 2.1</comments>
         </license>
         <license>
             <name>Slf4j License</name>
