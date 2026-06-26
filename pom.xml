@@ -112,9 +112,9 @@
     </distributionManagement>
 
     <properties>
-        <!-- Require java 8 -->
-        <java.version>8</java.version>
-        <java.release.version>8</java.release.version>
+        <!-- Require java 11 -->
+        <java.version>11</java.version>
+        <java.release.version>11</java.release.version>
 
         <!-- Config and Tomcat Versions -->
         <config.version>2.0.1</config.version>
@@ -122,13 +122,13 @@
 
         <!-- Config Logging Versions -->
         <commons-logging.version>1.4.0</commons-logging.version>
-        <logback.version>1.3.16</logback.version>
+        <logback.version>1.5.37</logback.version>
         <logback-access.version>1.3.16</logback-access.version>
         <slf4j.version>2.0.18</slf4j.version>
 
         <!-- Config Logstash Json Encoder -->
         <jackson.version>2.22.0</jackson.version>
-        <logstash.version>7.4</logstash.version>
+        <logstash.version>8.1</logstash.version>
 
         <!-- Automatic Module Name -->
         <module.name>com.github.tomcat9.slf4j.logback</module.name>
@@ -228,6 +228,24 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <executions>
+                    <execution>
+                        <id>copy-logback-access</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>process-sources</phase>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>ch.qos.logback</groupId>
+                                    <artifactId>logback-core</artifactId>
+                                    <version>${logback-access.version}</version>
+                                    <outputDirectory>${project.build.directory}/patch-lib</outputDirectory>
+                                    <destFileName>logback-core-${logback-access.version}.jar</destFileName>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
                     <execution>
                         <id>unpack-config</id>
                         <goals>
@@ -333,7 +351,7 @@
                                 <filter>
                                     <artifact>ch.qos.logback:logback-classic</artifact>
                                     <excludes>
-                                        <exclude>META-INF/services/javax.servlet.ServletContainerInitializer</exclude>
+                                        <exclude>META-INF/services/jakarta.servlet.ServletContainerInitializer</exclude>
                                     </excludes>
                                 </filter>
 
@@ -353,7 +371,7 @@
                                     </excludes>
                                 </filter>
 
-                                <!-- Exclude module info as conflicting and we are not using (we require java 8 as a baseline) -->
+                                <!-- Exclude module info as conflicting and we are not using -->
                                 <filter>
                                     <artifact>org.slf4j:*</artifact>
                                     <excludes>
@@ -369,11 +387,11 @@
                                     </excludes>
                                 </filter>
 
-                                <!-- Exclude module info as conflicting and we are not using (we require java 8 as a baseline) -->
+                                <!-- Exclude module info as conflicting and we are not using -->
                                 <filter>
                                     <artifact>ch.qos.logback:*</artifact>
                                     <excludes>
-                                        <exclude>META-INF/versions/9/module-info.class</exclude>
+                                        <exclude>module-info.class</exclude>
                                     </excludes>
                                 </filter>
 
@@ -401,7 +419,7 @@
                                     </excludes>
                                 </filter>
 
-                                <!-- Exclude module info as conflicting and we are not using (we require java 8 as a baseline) -->
+                                <!-- Exclude module info as conflicting and we are not using -->
                                 <filter>
                                     <artifact>com.fasterxml.jackson.core:*</artifact>
                                     <excludes>
@@ -521,6 +539,45 @@
                             <goal>single</goal>
                         </goals>
                         <phase>package</phase>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Handle legacy logback access -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>truezip-maven-plugin</artifactId>
+                <version>1.2</version>
+                <executions>
+                    <execution>
+                        <id>remove-new-logback-core</id>
+                        <goals>
+                            <goal>remove</goal>
+                        </goals>
+                        <phase>package</phase>
+                        <configuration>
+                            <fileset>
+                                <directory>${project.build.directory}/tomcat-juli-tomcat-${tomcat.version}-slf4j-${slf4j.version}-logback-${logback.version}.zip</directory>
+                                <includes>
+                                    <include>**/lib/logback-core-${logback.version}.jar</include>
+                                </includes>
+                            </fileset>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>inject-legacy-logback-core</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>package</phase>
+                        <configuration>
+                            <files>
+                                <file>
+                                    <source>${project.build.directory}/patch-lib/logback-core-${logback-access.version}.jar</source>
+                                    <outputDirectory>${project.build.directory}/tomcat-juli-tomcat-${tomcat.version}-slf4j-${slf4j.version}-logback-${logback.version}.zip/lib</outputDirectory>
+                                </file>
+                            </files>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
