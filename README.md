@@ -5,7 +5,7 @@
 [![Project Stats](https://www.openhub.net/p/tomcat-slf4j-logback/widgets/project_thin_badge.gif)](https://www.openhub.net/p/tomcat-slf4j-logback)
 [![Github All Releases](https://img.shields.io/github/downloads/tomcat-slf4j-logback/tomcat-slf4j-logback/total.svg)]()
 
-Tomcat SLF4J Logback is a drop in replacement to tomcat allowing full all internal logging to use our favorite slf4j/logback libraries.
+Tomcat SLF4J Logback is a drop in replacement to tomcat allowing full all internal logging to use our favorite slf4j/logback libraries.  Logback Access is provided for convenience only.
 
 ## RELEASES ##
 
@@ -74,7 +74,7 @@ For users to get release, use dependency as follows.
 <dependency>
     <groupId>com.github.tomcat-slf4j-logback</groupId>
     <artifactId>tomcat9-slf4j-logback</artifactId>
-	<version>${tomcat.version}</version>
+    <version>${tomcat.version}</version>
 </dependency>
 ```
 
@@ -83,6 +83,12 @@ The tomcat-slfj4-logback binary must be renamed as tomcat-juli to use within a t
 ## Site Page ##
 
 Site page is located [here](https://tomcat-slf4j-logback.github.io/tomcat9-slf4j-logback/)
+
+## Support ##
+
+- Java 8 support ended with version 9.0.118. That release remains available and is expected to continue working with newer Tomcat 9.x releases because JULI changes very little.
+- Java 11 required due to logback support requirements from 9.0.119 onwards.
+- Logback Access does not support newer logback and therefore remains on 1.3.x release path.
 
 ## Details ##
 
