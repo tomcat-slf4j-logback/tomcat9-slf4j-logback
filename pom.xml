@@ -120,12 +120,13 @@
         <config.version>2.0.1</config.version>
         <tomcat.version>9.0.119</tomcat.version>
 
-        <!-- Override for Latest Versions -->
+        <!-- Config Logging Versions -->
+        <commons-logging.version>1.4.0</commons-logging.version>
         <logback.version>1.3.16</logback.version>
         <logback-access.version>1.3.16</logback-access.version>
         <slf4j.version>2.0.18</slf4j.version>
 
-        <!-- Logstash Json Encoder -->
+        <!-- Config Logstash Json Encoder -->
         <jackson.version>2.22.0</jackson.version>
         <logstash.version>7.4</logstash.version>
 
@@ -162,9 +163,9 @@
         </dependency>
 
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jcl-over-slf4j</artifactId>
-            <version>${slf4j.version}</version>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>${commons-logging.version}</version>
             <scope>compile</scope>
             <optional>true</optional>
         </dependency>
@@ -265,7 +266,7 @@
                                 <includes>
                                     <include>org.apache.tomcat:tomcat-juli</include>
 
-                                    <include>org.slf4j:jcl-over-slf4j</include>
+                                    <include>commons-logging:commons-logging</include>
                                     <include>org.slf4j:slf4j-api</include>
                                     <include>ch.qos.logback:logback-classic</include>
                                     <include>ch.qos.logback:logback-core</include>
@@ -288,11 +289,43 @@
                                     </includes>
                                 </filter>
 
-                                <!-- Exclude services from jcl-over-slf4j as not needed in this classloader -->
+                                <!-- Exclude licenses as separately handled -->
                                 <filter>
-                                    <artifact>org.slf4j:jcl-over-slf4j</artifact>
+                                    <artifact>commons-logging:commons-logging</artifact>
                                     <excludes>
-                                        <exclude>META-INF/services/**</exclude>
+                                        <exclude>META-INF/LICENSE.txt</exclude>
+                                    </excludes>
+                                </filter>
+
+                                <!-- Exclude notice as separately handled -->
+                                <filter>
+                                    <artifact>commons-logging:commons-logging</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/NOTICE.txt</exclude>
+                                    </excludes>
+                                </filter>
+
+                                <!-- Exclude module info as conflicting and we are not using -->
+                                <filter>
+                                    <artifact>commons-logging:commons-logging</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/versions/9/module-info.class</exclude>
+                                    </excludes>
+                                </filter>
+
+                                <!-- Exclude manifests as we include our own -->
+                                <filter>
+                                    <artifact>commons-logging:commons-logging</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/MANIFEST.MF</exclude>
+                                    </excludes>
+                                </filter>
+
+                                <!-- Exclude 'ServletContextCleaner' from commons-logging as not needed in this classloader -->
+                                <filter>
+                                    <artifact>commons-logging</artifact>
+                                    <excludes>
+                                        <exclude>org/apache/commons/logging/jakarta/ServletContextCleaner.class</exclude>
                                     </excludes>
                                 </filter>
 
