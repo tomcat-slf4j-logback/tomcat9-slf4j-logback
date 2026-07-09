@@ -118,7 +118,7 @@
 
         <!-- Config and Tomcat Versions -->
         <config.version>2.0.1</config.version>
-        <tomcat.version>9.0.119</tomcat.version>
+        <tomcat.version>9.0.120</tomcat.version>
 
         <!-- Config Logging Versions -->
         <commons-logging.version>1.4.0</commons-logging.version>
