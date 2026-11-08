@@ -127,7 +127,7 @@
         <slf4j.version>2.0.20</slf4j.version>
 
         <!-- Config Logstash Json Encoder -->
-        <jackson.version>2.22.4</jackson.version>
+        <jackson.version>2.23.0</jackson.version>
         <logstash.version>8.1</logstash.version>
 
         <!-- Automatic Module Name -->
@@ -206,7 +206,7 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
             <!-- Bug in central plublishing isn't understanding the 'bom' -->
-            <version>2.22</version>
+            <version>2.23</version>
             <scope>compile</scope>
             <optional>true</optional>
         </dependency>
